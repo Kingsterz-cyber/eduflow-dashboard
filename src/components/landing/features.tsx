@@ -8,7 +8,8 @@ import {
   Users,
 } from "lucide-react";
 import { Reveal, StaggerChildren, childVariant } from "./reveal";
-import { motion as m } from "framer-motion";
+
+const m = motion;
 
 const features = [
   {

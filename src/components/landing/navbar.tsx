@@ -22,7 +22,7 @@ export function Navbar() {
       <div className="glass rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between shadow-card">
         <a href="#" className="flex items-center gap-2 group">
           <div className="relative h-8 w-8 rounded-lg bg-gradient-hero grid place-items-center shadow-glow-primary">
-            <GraduationCap className="h-4.5 w-4.5 text-white" strokeWidth={2.5} />
+            <GraduationCap className="h-4 w-4 text-white" strokeWidth={2.5} />
           </div>
           <span className="font-display font-semibold tracking-tight text-base">EduFlow</span>
         </a>

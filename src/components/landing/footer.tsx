@@ -14,7 +14,7 @@ export function Footer() {
         <div className="col-span-2">
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 rounded-lg bg-gradient-hero grid place-items-center">
-              <GraduationCap className="h-4.5 w-4.5 text-white" strokeWidth={2.5} />
+              <GraduationCap className="h-4 w-4 text-white" strokeWidth={2.5} />
             </div>
             <span className="font-display font-semibold tracking-tight">EduFlow</span>
           </div>
