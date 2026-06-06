@@ -12,8 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as AppTeacherIndexRouteImport } from './routes/app/teacher/index'
 import { Route as AppDosIndexRouteImport } from './routes/app/dos/index'
 import { Route as AppDirectorIndexRouteImport } from './routes/app/director/index'
+import { Route as AppTeacherStudentsRouteImport } from './routes/app/teacher/students'
+import { Route as AppTeacherMarksRouteImport } from './routes/app/teacher/marks'
+import { Route as AppTeacherClassesRouteImport } from './routes/app/teacher/classes'
+import { Route as AppTeacherAttendanceRouteImport } from './routes/app/teacher/attendance'
+import { Route as AppTeacherAnnouncementsRouteImport } from './routes/app/teacher/announcements'
 import { Route as AppDosTeachersRouteImport } from './routes/app/dos/teachers'
 import { Route as AppDosSubjectsRouteImport } from './routes/app/dos/subjects'
 import { Route as AppDosReportsRouteImport } from './routes/app/dos/reports'
@@ -43,6 +49,11 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppTeacherIndexRoute = AppTeacherIndexRouteImport.update({
+  id: '/teacher/',
+  path: '/teacher/',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDosIndexRoute = AppDosIndexRouteImport.update({
   id: '/dos/',
   path: '/dos/',
@@ -51,6 +62,31 @@ const AppDosIndexRoute = AppDosIndexRouteImport.update({
 const AppDirectorIndexRoute = AppDirectorIndexRouteImport.update({
   id: '/director/',
   path: '/director/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTeacherStudentsRoute = AppTeacherStudentsRouteImport.update({
+  id: '/teacher/students',
+  path: '/teacher/students',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTeacherMarksRoute = AppTeacherMarksRouteImport.update({
+  id: '/teacher/marks',
+  path: '/teacher/marks',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTeacherClassesRoute = AppTeacherClassesRouteImport.update({
+  id: '/teacher/classes',
+  path: '/teacher/classes',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTeacherAttendanceRoute = AppTeacherAttendanceRouteImport.update({
+  id: '/teacher/attendance',
+  path: '/teacher/attendance',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTeacherAnnouncementsRoute = AppTeacherAnnouncementsRouteImport.update({
+  id: '/teacher/announcements',
+  path: '/teacher/announcements',
   getParentRoute: () => AppRoute,
 } as any)
 const AppDosTeachersRoute = AppDosTeachersRouteImport.update({
@@ -137,8 +173,14 @@ export interface FileRoutesByFullPath {
   '/app/dos/reports': typeof AppDosReportsRoute
   '/app/dos/subjects': typeof AppDosSubjectsRoute
   '/app/dos/teachers': typeof AppDosTeachersRoute
+  '/app/teacher/announcements': typeof AppTeacherAnnouncementsRoute
+  '/app/teacher/attendance': typeof AppTeacherAttendanceRoute
+  '/app/teacher/classes': typeof AppTeacherClassesRoute
+  '/app/teacher/marks': typeof AppTeacherMarksRoute
+  '/app/teacher/students': typeof AppTeacherStudentsRoute
   '/app/director/': typeof AppDirectorIndexRoute
   '/app/dos/': typeof AppDosIndexRoute
+  '/app/teacher/': typeof AppTeacherIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -156,8 +198,14 @@ export interface FileRoutesByTo {
   '/app/dos/reports': typeof AppDosReportsRoute
   '/app/dos/subjects': typeof AppDosSubjectsRoute
   '/app/dos/teachers': typeof AppDosTeachersRoute
+  '/app/teacher/announcements': typeof AppTeacherAnnouncementsRoute
+  '/app/teacher/attendance': typeof AppTeacherAttendanceRoute
+  '/app/teacher/classes': typeof AppTeacherClassesRoute
+  '/app/teacher/marks': typeof AppTeacherMarksRoute
+  '/app/teacher/students': typeof AppTeacherStudentsRoute
   '/app/director': typeof AppDirectorIndexRoute
   '/app/dos': typeof AppDosIndexRoute
+  '/app/teacher': typeof AppTeacherIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -177,8 +225,14 @@ export interface FileRoutesById {
   '/app/dos/reports': typeof AppDosReportsRoute
   '/app/dos/subjects': typeof AppDosSubjectsRoute
   '/app/dos/teachers': typeof AppDosTeachersRoute
+  '/app/teacher/announcements': typeof AppTeacherAnnouncementsRoute
+  '/app/teacher/attendance': typeof AppTeacherAttendanceRoute
+  '/app/teacher/classes': typeof AppTeacherClassesRoute
+  '/app/teacher/marks': typeof AppTeacherMarksRoute
+  '/app/teacher/students': typeof AppTeacherStudentsRoute
   '/app/director/': typeof AppDirectorIndexRoute
   '/app/dos/': typeof AppDosIndexRoute
+  '/app/teacher/': typeof AppTeacherIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -199,8 +253,14 @@ export interface FileRouteTypes {
     | '/app/dos/reports'
     | '/app/dos/subjects'
     | '/app/dos/teachers'
+    | '/app/teacher/announcements'
+    | '/app/teacher/attendance'
+    | '/app/teacher/classes'
+    | '/app/teacher/marks'
+    | '/app/teacher/students'
     | '/app/director/'
     | '/app/dos/'
+    | '/app/teacher/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -218,8 +278,14 @@ export interface FileRouteTypes {
     | '/app/dos/reports'
     | '/app/dos/subjects'
     | '/app/dos/teachers'
+    | '/app/teacher/announcements'
+    | '/app/teacher/attendance'
+    | '/app/teacher/classes'
+    | '/app/teacher/marks'
+    | '/app/teacher/students'
     | '/app/director'
     | '/app/dos'
+    | '/app/teacher'
   id:
     | '__root__'
     | '/'
@@ -238,8 +304,14 @@ export interface FileRouteTypes {
     | '/app/dos/reports'
     | '/app/dos/subjects'
     | '/app/dos/teachers'
+    | '/app/teacher/announcements'
+    | '/app/teacher/attendance'
+    | '/app/teacher/classes'
+    | '/app/teacher/marks'
+    | '/app/teacher/students'
     | '/app/director/'
     | '/app/dos/'
+    | '/app/teacher/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -270,6 +342,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/teacher/': {
+      id: '/app/teacher/'
+      path: '/teacher'
+      fullPath: '/app/teacher/'
+      preLoaderRoute: typeof AppTeacherIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/dos/': {
       id: '/app/dos/'
       path: '/dos'
@@ -282,6 +361,41 @@ declare module '@tanstack/react-router' {
       path: '/director'
       fullPath: '/app/director/'
       preLoaderRoute: typeof AppDirectorIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/teacher/students': {
+      id: '/app/teacher/students'
+      path: '/teacher/students'
+      fullPath: '/app/teacher/students'
+      preLoaderRoute: typeof AppTeacherStudentsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/teacher/marks': {
+      id: '/app/teacher/marks'
+      path: '/teacher/marks'
+      fullPath: '/app/teacher/marks'
+      preLoaderRoute: typeof AppTeacherMarksRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/teacher/classes': {
+      id: '/app/teacher/classes'
+      path: '/teacher/classes'
+      fullPath: '/app/teacher/classes'
+      preLoaderRoute: typeof AppTeacherClassesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/teacher/attendance': {
+      id: '/app/teacher/attendance'
+      path: '/teacher/attendance'
+      fullPath: '/app/teacher/attendance'
+      preLoaderRoute: typeof AppTeacherAttendanceRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/teacher/announcements': {
+      id: '/app/teacher/announcements'
+      path: '/teacher/announcements'
+      fullPath: '/app/teacher/announcements'
+      preLoaderRoute: typeof AppTeacherAnnouncementsRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/dos/teachers': {
@@ -393,8 +507,14 @@ interface AppRouteChildren {
   AppDosReportsRoute: typeof AppDosReportsRoute
   AppDosSubjectsRoute: typeof AppDosSubjectsRoute
   AppDosTeachersRoute: typeof AppDosTeachersRoute
+  AppTeacherAnnouncementsRoute: typeof AppTeacherAnnouncementsRoute
+  AppTeacherAttendanceRoute: typeof AppTeacherAttendanceRoute
+  AppTeacherClassesRoute: typeof AppTeacherClassesRoute
+  AppTeacherMarksRoute: typeof AppTeacherMarksRoute
+  AppTeacherStudentsRoute: typeof AppTeacherStudentsRoute
   AppDirectorIndexRoute: typeof AppDirectorIndexRoute
   AppDosIndexRoute: typeof AppDosIndexRoute
+  AppTeacherIndexRoute: typeof AppTeacherIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -412,8 +532,14 @@ const AppRouteChildren: AppRouteChildren = {
   AppDosReportsRoute: AppDosReportsRoute,
   AppDosSubjectsRoute: AppDosSubjectsRoute,
   AppDosTeachersRoute: AppDosTeachersRoute,
+  AppTeacherAnnouncementsRoute: AppTeacherAnnouncementsRoute,
+  AppTeacherAttendanceRoute: AppTeacherAttendanceRoute,
+  AppTeacherClassesRoute: AppTeacherClassesRoute,
+  AppTeacherMarksRoute: AppTeacherMarksRoute,
+  AppTeacherStudentsRoute: AppTeacherStudentsRoute,
   AppDirectorIndexRoute: AppDirectorIndexRoute,
   AppDosIndexRoute: AppDosIndexRoute,
+  AppTeacherIndexRoute: AppTeacherIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
