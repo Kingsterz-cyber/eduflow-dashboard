@@ -12,6 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as AppDirectorIndexRouteImport } from './routes/app/director/index'
+import { Route as AppDirectorStudentsRouteImport } from './routes/app/director/students'
+import { Route as AppDirectorStaffRouteImport } from './routes/app/director/staff'
+import { Route as AppDirectorSettingsRouteImport } from './routes/app/director/settings'
+import { Route as AppDirectorReportsRouteImport } from './routes/app/director/reports'
+import { Route as AppDirectorApprovalsRouteImport } from './routes/app/director/approvals'
+import { Route as AppDirectorAnnouncementsRouteImport } from './routes/app/director/announcements'
 
 const AppRoute = AppRouteImport.update({
   id: '/app',
@@ -28,28 +35,115 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppDirectorIndexRoute = AppDirectorIndexRouteImport.update({
+  id: '/director/',
+  path: '/director/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDirectorStudentsRoute = AppDirectorStudentsRouteImport.update({
+  id: '/director/students',
+  path: '/director/students',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDirectorStaffRoute = AppDirectorStaffRouteImport.update({
+  id: '/director/staff',
+  path: '/director/staff',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDirectorSettingsRoute = AppDirectorSettingsRouteImport.update({
+  id: '/director/settings',
+  path: '/director/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDirectorReportsRoute = AppDirectorReportsRouteImport.update({
+  id: '/director/reports',
+  path: '/director/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDirectorApprovalsRoute = AppDirectorApprovalsRouteImport.update({
+  id: '/director/approvals',
+  path: '/director/approvals',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDirectorAnnouncementsRoute =
+  AppDirectorAnnouncementsRouteImport.update({
+    id: '/director/announcements',
+    path: '/director/announcements',
+    getParentRoute: () => AppRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/app/': typeof AppIndexRoute
+  '/app/director/announcements': typeof AppDirectorAnnouncementsRoute
+  '/app/director/approvals': typeof AppDirectorApprovalsRoute
+  '/app/director/reports': typeof AppDirectorReportsRoute
+  '/app/director/settings': typeof AppDirectorSettingsRoute
+  '/app/director/staff': typeof AppDirectorStaffRoute
+  '/app/director/students': typeof AppDirectorStudentsRoute
+  '/app/director/': typeof AppDirectorIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app': typeof AppIndexRoute
+  '/app/director/announcements': typeof AppDirectorAnnouncementsRoute
+  '/app/director/approvals': typeof AppDirectorApprovalsRoute
+  '/app/director/reports': typeof AppDirectorReportsRoute
+  '/app/director/settings': typeof AppDirectorSettingsRoute
+  '/app/director/staff': typeof AppDirectorStaffRoute
+  '/app/director/students': typeof AppDirectorStudentsRoute
+  '/app/director': typeof AppDirectorIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/app/': typeof AppIndexRoute
+  '/app/director/announcements': typeof AppDirectorAnnouncementsRoute
+  '/app/director/approvals': typeof AppDirectorApprovalsRoute
+  '/app/director/reports': typeof AppDirectorReportsRoute
+  '/app/director/settings': typeof AppDirectorSettingsRoute
+  '/app/director/staff': typeof AppDirectorStaffRoute
+  '/app/director/students': typeof AppDirectorStudentsRoute
+  '/app/director/': typeof AppDirectorIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/app/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/app/'
+    | '/app/director/announcements'
+    | '/app/director/approvals'
+    | '/app/director/reports'
+    | '/app/director/settings'
+    | '/app/director/staff'
+    | '/app/director/students'
+    | '/app/director/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app'
-  id: '__root__' | '/' | '/app' | '/app/'
+  to:
+    | '/'
+    | '/app'
+    | '/app/director/announcements'
+    | '/app/director/approvals'
+    | '/app/director/reports'
+    | '/app/director/settings'
+    | '/app/director/staff'
+    | '/app/director/students'
+    | '/app/director'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/app/'
+    | '/app/director/announcements'
+    | '/app/director/approvals'
+    | '/app/director/reports'
+    | '/app/director/settings'
+    | '/app/director/staff'
+    | '/app/director/students'
+    | '/app/director/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -80,15 +174,78 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/director/': {
+      id: '/app/director/'
+      path: '/director'
+      fullPath: '/app/director/'
+      preLoaderRoute: typeof AppDirectorIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/director/students': {
+      id: '/app/director/students'
+      path: '/director/students'
+      fullPath: '/app/director/students'
+      preLoaderRoute: typeof AppDirectorStudentsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/director/staff': {
+      id: '/app/director/staff'
+      path: '/director/staff'
+      fullPath: '/app/director/staff'
+      preLoaderRoute: typeof AppDirectorStaffRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/director/settings': {
+      id: '/app/director/settings'
+      path: '/director/settings'
+      fullPath: '/app/director/settings'
+      preLoaderRoute: typeof AppDirectorSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/director/reports': {
+      id: '/app/director/reports'
+      path: '/director/reports'
+      fullPath: '/app/director/reports'
+      preLoaderRoute: typeof AppDirectorReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/director/approvals': {
+      id: '/app/director/approvals'
+      path: '/director/approvals'
+      fullPath: '/app/director/approvals'
+      preLoaderRoute: typeof AppDirectorApprovalsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/director/announcements': {
+      id: '/app/director/announcements'
+      path: '/director/announcements'
+      fullPath: '/app/director/announcements'
+      preLoaderRoute: typeof AppDirectorAnnouncementsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
+  AppDirectorAnnouncementsRoute: typeof AppDirectorAnnouncementsRoute
+  AppDirectorApprovalsRoute: typeof AppDirectorApprovalsRoute
+  AppDirectorReportsRoute: typeof AppDirectorReportsRoute
+  AppDirectorSettingsRoute: typeof AppDirectorSettingsRoute
+  AppDirectorStaffRoute: typeof AppDirectorStaffRoute
+  AppDirectorStudentsRoute: typeof AppDirectorStudentsRoute
+  AppDirectorIndexRoute: typeof AppDirectorIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppIndexRoute: AppIndexRoute,
+  AppDirectorAnnouncementsRoute: AppDirectorAnnouncementsRoute,
+  AppDirectorApprovalsRoute: AppDirectorApprovalsRoute,
+  AppDirectorReportsRoute: AppDirectorReportsRoute,
+  AppDirectorSettingsRoute: AppDirectorSettingsRoute,
+  AppDirectorStaffRoute: AppDirectorStaffRoute,
+  AppDirectorStudentsRoute: AppDirectorStudentsRoute,
+  AppDirectorIndexRoute: AppDirectorIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
@@ -100,3 +257,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
