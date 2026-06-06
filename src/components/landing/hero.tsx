@@ -63,10 +63,10 @@ export function Hero() {
             variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.97 }}
-            href="#cta"
+            href="/app"
             className="group inline-flex h-11 items-center gap-2 px-5 rounded-xl bg-gradient-hero text-white font-medium text-sm shadow-glow-primary transition-shadow hover:shadow-elevated"
           >
-            Start Free
+            Open dashboard
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </motion.a>
           <motion.a

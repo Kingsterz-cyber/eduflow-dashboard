@@ -9,38 +9,397 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as AppTeacherIndexRouteImport } from './routes/app/teacher/index'
+import { Route as AppStudentIndexRouteImport } from './routes/app/student/index'
+import { Route as AppDosIndexRouteImport } from './routes/app/dos/index'
+import { Route as AppDirectorIndexRouteImport } from './routes/app/director/index'
+import { Route as AppTeacherStudentsRouteImport } from './routes/app/teacher/students'
+import { Route as AppTeacherMarksRouteImport } from './routes/app/teacher/marks'
+import { Route as AppTeacherClassesRouteImport } from './routes/app/teacher/classes'
+import { Route as AppTeacherAttendanceRouteImport } from './routes/app/teacher/attendance'
+import { Route as AppTeacherAnnouncementsRouteImport } from './routes/app/teacher/announcements'
+import { Route as AppStudentSubjectsRouteImport } from './routes/app/student/subjects'
+import { Route as AppStudentReportsRouteImport } from './routes/app/student/reports'
+import { Route as AppStudentMarksRouteImport } from './routes/app/student/marks'
+import { Route as AppStudentAttendanceRouteImport } from './routes/app/student/attendance'
+import { Route as AppStudentAnnouncementsRouteImport } from './routes/app/student/announcements'
+import { Route as AppDosTeachersRouteImport } from './routes/app/dos/teachers'
+import { Route as AppDosSubjectsRouteImport } from './routes/app/dos/subjects'
+import { Route as AppDosReportsRouteImport } from './routes/app/dos/reports'
+import { Route as AppDosMarksRouteImport } from './routes/app/dos/marks'
+import { Route as AppDosClassesRouteImport } from './routes/app/dos/classes'
+import { Route as AppDosAttendanceRouteImport } from './routes/app/dos/attendance'
+import { Route as AppDosAnalyticsRouteImport } from './routes/app/dos/analytics'
+import { Route as AppDirectorStudentsRouteImport } from './routes/app/director/students'
+import { Route as AppDirectorStaffRouteImport } from './routes/app/director/staff'
+import { Route as AppDirectorSettingsRouteImport } from './routes/app/director/settings'
+import { Route as AppDirectorReportsRouteImport } from './routes/app/director/reports'
+import { Route as AppDirectorApprovalsRouteImport } from './routes/app/director/approvals'
+import { Route as AppDirectorAnnouncementsRouteImport } from './routes/app/director/announcements'
 
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTeacherIndexRoute = AppTeacherIndexRouteImport.update({
+  id: '/teacher/',
+  path: '/teacher/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppStudentIndexRoute = AppStudentIndexRouteImport.update({
+  id: '/student/',
+  path: '/student/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDosIndexRoute = AppDosIndexRouteImport.update({
+  id: '/dos/',
+  path: '/dos/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDirectorIndexRoute = AppDirectorIndexRouteImport.update({
+  id: '/director/',
+  path: '/director/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTeacherStudentsRoute = AppTeacherStudentsRouteImport.update({
+  id: '/teacher/students',
+  path: '/teacher/students',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTeacherMarksRoute = AppTeacherMarksRouteImport.update({
+  id: '/teacher/marks',
+  path: '/teacher/marks',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTeacherClassesRoute = AppTeacherClassesRouteImport.update({
+  id: '/teacher/classes',
+  path: '/teacher/classes',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTeacherAttendanceRoute = AppTeacherAttendanceRouteImport.update({
+  id: '/teacher/attendance',
+  path: '/teacher/attendance',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTeacherAnnouncementsRoute = AppTeacherAnnouncementsRouteImport.update({
+  id: '/teacher/announcements',
+  path: '/teacher/announcements',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppStudentSubjectsRoute = AppStudentSubjectsRouteImport.update({
+  id: '/student/subjects',
+  path: '/student/subjects',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppStudentReportsRoute = AppStudentReportsRouteImport.update({
+  id: '/student/reports',
+  path: '/student/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppStudentMarksRoute = AppStudentMarksRouteImport.update({
+  id: '/student/marks',
+  path: '/student/marks',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppStudentAttendanceRoute = AppStudentAttendanceRouteImport.update({
+  id: '/student/attendance',
+  path: '/student/attendance',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppStudentAnnouncementsRoute = AppStudentAnnouncementsRouteImport.update({
+  id: '/student/announcements',
+  path: '/student/announcements',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDosTeachersRoute = AppDosTeachersRouteImport.update({
+  id: '/dos/teachers',
+  path: '/dos/teachers',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDosSubjectsRoute = AppDosSubjectsRouteImport.update({
+  id: '/dos/subjects',
+  path: '/dos/subjects',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDosReportsRoute = AppDosReportsRouteImport.update({
+  id: '/dos/reports',
+  path: '/dos/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDosMarksRoute = AppDosMarksRouteImport.update({
+  id: '/dos/marks',
+  path: '/dos/marks',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDosClassesRoute = AppDosClassesRouteImport.update({
+  id: '/dos/classes',
+  path: '/dos/classes',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDosAttendanceRoute = AppDosAttendanceRouteImport.update({
+  id: '/dos/attendance',
+  path: '/dos/attendance',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDosAnalyticsRoute = AppDosAnalyticsRouteImport.update({
+  id: '/dos/analytics',
+  path: '/dos/analytics',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDirectorStudentsRoute = AppDirectorStudentsRouteImport.update({
+  id: '/director/students',
+  path: '/director/students',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDirectorStaffRoute = AppDirectorStaffRouteImport.update({
+  id: '/director/staff',
+  path: '/director/staff',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDirectorSettingsRoute = AppDirectorSettingsRouteImport.update({
+  id: '/director/settings',
+  path: '/director/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDirectorReportsRoute = AppDirectorReportsRouteImport.update({
+  id: '/director/reports',
+  path: '/director/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDirectorApprovalsRoute = AppDirectorApprovalsRouteImport.update({
+  id: '/director/approvals',
+  path: '/director/approvals',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDirectorAnnouncementsRoute =
+  AppDirectorAnnouncementsRouteImport.update({
+    id: '/director/announcements',
+    path: '/director/announcements',
+    getParentRoute: () => AppRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/': typeof AppIndexRoute
+  '/app/director/announcements': typeof AppDirectorAnnouncementsRoute
+  '/app/director/approvals': typeof AppDirectorApprovalsRoute
+  '/app/director/reports': typeof AppDirectorReportsRoute
+  '/app/director/settings': typeof AppDirectorSettingsRoute
+  '/app/director/staff': typeof AppDirectorStaffRoute
+  '/app/director/students': typeof AppDirectorStudentsRoute
+  '/app/dos/analytics': typeof AppDosAnalyticsRoute
+  '/app/dos/attendance': typeof AppDosAttendanceRoute
+  '/app/dos/classes': typeof AppDosClassesRoute
+  '/app/dos/marks': typeof AppDosMarksRoute
+  '/app/dos/reports': typeof AppDosReportsRoute
+  '/app/dos/subjects': typeof AppDosSubjectsRoute
+  '/app/dos/teachers': typeof AppDosTeachersRoute
+  '/app/student/announcements': typeof AppStudentAnnouncementsRoute
+  '/app/student/attendance': typeof AppStudentAttendanceRoute
+  '/app/student/marks': typeof AppStudentMarksRoute
+  '/app/student/reports': typeof AppStudentReportsRoute
+  '/app/student/subjects': typeof AppStudentSubjectsRoute
+  '/app/teacher/announcements': typeof AppTeacherAnnouncementsRoute
+  '/app/teacher/attendance': typeof AppTeacherAttendanceRoute
+  '/app/teacher/classes': typeof AppTeacherClassesRoute
+  '/app/teacher/marks': typeof AppTeacherMarksRoute
+  '/app/teacher/students': typeof AppTeacherStudentsRoute
+  '/app/director/': typeof AppDirectorIndexRoute
+  '/app/dos/': typeof AppDosIndexRoute
+  '/app/student/': typeof AppStudentIndexRoute
+  '/app/teacher/': typeof AppTeacherIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app': typeof AppIndexRoute
+  '/app/director/announcements': typeof AppDirectorAnnouncementsRoute
+  '/app/director/approvals': typeof AppDirectorApprovalsRoute
+  '/app/director/reports': typeof AppDirectorReportsRoute
+  '/app/director/settings': typeof AppDirectorSettingsRoute
+  '/app/director/staff': typeof AppDirectorStaffRoute
+  '/app/director/students': typeof AppDirectorStudentsRoute
+  '/app/dos/analytics': typeof AppDosAnalyticsRoute
+  '/app/dos/attendance': typeof AppDosAttendanceRoute
+  '/app/dos/classes': typeof AppDosClassesRoute
+  '/app/dos/marks': typeof AppDosMarksRoute
+  '/app/dos/reports': typeof AppDosReportsRoute
+  '/app/dos/subjects': typeof AppDosSubjectsRoute
+  '/app/dos/teachers': typeof AppDosTeachersRoute
+  '/app/student/announcements': typeof AppStudentAnnouncementsRoute
+  '/app/student/attendance': typeof AppStudentAttendanceRoute
+  '/app/student/marks': typeof AppStudentMarksRoute
+  '/app/student/reports': typeof AppStudentReportsRoute
+  '/app/student/subjects': typeof AppStudentSubjectsRoute
+  '/app/teacher/announcements': typeof AppTeacherAnnouncementsRoute
+  '/app/teacher/attendance': typeof AppTeacherAttendanceRoute
+  '/app/teacher/classes': typeof AppTeacherClassesRoute
+  '/app/teacher/marks': typeof AppTeacherMarksRoute
+  '/app/teacher/students': typeof AppTeacherStudentsRoute
+  '/app/director': typeof AppDirectorIndexRoute
+  '/app/dos': typeof AppDosIndexRoute
+  '/app/student': typeof AppStudentIndexRoute
+  '/app/teacher': typeof AppTeacherIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/': typeof AppIndexRoute
+  '/app/director/announcements': typeof AppDirectorAnnouncementsRoute
+  '/app/director/approvals': typeof AppDirectorApprovalsRoute
+  '/app/director/reports': typeof AppDirectorReportsRoute
+  '/app/director/settings': typeof AppDirectorSettingsRoute
+  '/app/director/staff': typeof AppDirectorStaffRoute
+  '/app/director/students': typeof AppDirectorStudentsRoute
+  '/app/dos/analytics': typeof AppDosAnalyticsRoute
+  '/app/dos/attendance': typeof AppDosAttendanceRoute
+  '/app/dos/classes': typeof AppDosClassesRoute
+  '/app/dos/marks': typeof AppDosMarksRoute
+  '/app/dos/reports': typeof AppDosReportsRoute
+  '/app/dos/subjects': typeof AppDosSubjectsRoute
+  '/app/dos/teachers': typeof AppDosTeachersRoute
+  '/app/student/announcements': typeof AppStudentAnnouncementsRoute
+  '/app/student/attendance': typeof AppStudentAttendanceRoute
+  '/app/student/marks': typeof AppStudentMarksRoute
+  '/app/student/reports': typeof AppStudentReportsRoute
+  '/app/student/subjects': typeof AppStudentSubjectsRoute
+  '/app/teacher/announcements': typeof AppTeacherAnnouncementsRoute
+  '/app/teacher/attendance': typeof AppTeacherAttendanceRoute
+  '/app/teacher/classes': typeof AppTeacherClassesRoute
+  '/app/teacher/marks': typeof AppTeacherMarksRoute
+  '/app/teacher/students': typeof AppTeacherStudentsRoute
+  '/app/director/': typeof AppDirectorIndexRoute
+  '/app/dos/': typeof AppDosIndexRoute
+  '/app/student/': typeof AppStudentIndexRoute
+  '/app/teacher/': typeof AppTeacherIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/app/'
+    | '/app/director/announcements'
+    | '/app/director/approvals'
+    | '/app/director/reports'
+    | '/app/director/settings'
+    | '/app/director/staff'
+    | '/app/director/students'
+    | '/app/dos/analytics'
+    | '/app/dos/attendance'
+    | '/app/dos/classes'
+    | '/app/dos/marks'
+    | '/app/dos/reports'
+    | '/app/dos/subjects'
+    | '/app/dos/teachers'
+    | '/app/student/announcements'
+    | '/app/student/attendance'
+    | '/app/student/marks'
+    | '/app/student/reports'
+    | '/app/student/subjects'
+    | '/app/teacher/announcements'
+    | '/app/teacher/attendance'
+    | '/app/teacher/classes'
+    | '/app/teacher/marks'
+    | '/app/teacher/students'
+    | '/app/director/'
+    | '/app/dos/'
+    | '/app/student/'
+    | '/app/teacher/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/app'
+    | '/app/director/announcements'
+    | '/app/director/approvals'
+    | '/app/director/reports'
+    | '/app/director/settings'
+    | '/app/director/staff'
+    | '/app/director/students'
+    | '/app/dos/analytics'
+    | '/app/dos/attendance'
+    | '/app/dos/classes'
+    | '/app/dos/marks'
+    | '/app/dos/reports'
+    | '/app/dos/subjects'
+    | '/app/dos/teachers'
+    | '/app/student/announcements'
+    | '/app/student/attendance'
+    | '/app/student/marks'
+    | '/app/student/reports'
+    | '/app/student/subjects'
+    | '/app/teacher/announcements'
+    | '/app/teacher/attendance'
+    | '/app/teacher/classes'
+    | '/app/teacher/marks'
+    | '/app/teacher/students'
+    | '/app/director'
+    | '/app/dos'
+    | '/app/student'
+    | '/app/teacher'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/app/'
+    | '/app/director/announcements'
+    | '/app/director/approvals'
+    | '/app/director/reports'
+    | '/app/director/settings'
+    | '/app/director/staff'
+    | '/app/director/students'
+    | '/app/dos/analytics'
+    | '/app/dos/attendance'
+    | '/app/dos/classes'
+    | '/app/dos/marks'
+    | '/app/dos/reports'
+    | '/app/dos/subjects'
+    | '/app/dos/teachers'
+    | '/app/student/announcements'
+    | '/app/student/attendance'
+    | '/app/student/marks'
+    | '/app/student/reports'
+    | '/app/student/subjects'
+    | '/app/teacher/announcements'
+    | '/app/teacher/attendance'
+    | '/app/teacher/classes'
+    | '/app/teacher/marks'
+    | '/app/teacher/students'
+    | '/app/director/'
+    | '/app/dos/'
+    | '/app/student/'
+    | '/app/teacher/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +407,273 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/teacher/': {
+      id: '/app/teacher/'
+      path: '/teacher'
+      fullPath: '/app/teacher/'
+      preLoaderRoute: typeof AppTeacherIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/student/': {
+      id: '/app/student/'
+      path: '/student'
+      fullPath: '/app/student/'
+      preLoaderRoute: typeof AppStudentIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dos/': {
+      id: '/app/dos/'
+      path: '/dos'
+      fullPath: '/app/dos/'
+      preLoaderRoute: typeof AppDosIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/director/': {
+      id: '/app/director/'
+      path: '/director'
+      fullPath: '/app/director/'
+      preLoaderRoute: typeof AppDirectorIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/teacher/students': {
+      id: '/app/teacher/students'
+      path: '/teacher/students'
+      fullPath: '/app/teacher/students'
+      preLoaderRoute: typeof AppTeacherStudentsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/teacher/marks': {
+      id: '/app/teacher/marks'
+      path: '/teacher/marks'
+      fullPath: '/app/teacher/marks'
+      preLoaderRoute: typeof AppTeacherMarksRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/teacher/classes': {
+      id: '/app/teacher/classes'
+      path: '/teacher/classes'
+      fullPath: '/app/teacher/classes'
+      preLoaderRoute: typeof AppTeacherClassesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/teacher/attendance': {
+      id: '/app/teacher/attendance'
+      path: '/teacher/attendance'
+      fullPath: '/app/teacher/attendance'
+      preLoaderRoute: typeof AppTeacherAttendanceRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/teacher/announcements': {
+      id: '/app/teacher/announcements'
+      path: '/teacher/announcements'
+      fullPath: '/app/teacher/announcements'
+      preLoaderRoute: typeof AppTeacherAnnouncementsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/student/subjects': {
+      id: '/app/student/subjects'
+      path: '/student/subjects'
+      fullPath: '/app/student/subjects'
+      preLoaderRoute: typeof AppStudentSubjectsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/student/reports': {
+      id: '/app/student/reports'
+      path: '/student/reports'
+      fullPath: '/app/student/reports'
+      preLoaderRoute: typeof AppStudentReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/student/marks': {
+      id: '/app/student/marks'
+      path: '/student/marks'
+      fullPath: '/app/student/marks'
+      preLoaderRoute: typeof AppStudentMarksRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/student/attendance': {
+      id: '/app/student/attendance'
+      path: '/student/attendance'
+      fullPath: '/app/student/attendance'
+      preLoaderRoute: typeof AppStudentAttendanceRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/student/announcements': {
+      id: '/app/student/announcements'
+      path: '/student/announcements'
+      fullPath: '/app/student/announcements'
+      preLoaderRoute: typeof AppStudentAnnouncementsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dos/teachers': {
+      id: '/app/dos/teachers'
+      path: '/dos/teachers'
+      fullPath: '/app/dos/teachers'
+      preLoaderRoute: typeof AppDosTeachersRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dos/subjects': {
+      id: '/app/dos/subjects'
+      path: '/dos/subjects'
+      fullPath: '/app/dos/subjects'
+      preLoaderRoute: typeof AppDosSubjectsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dos/reports': {
+      id: '/app/dos/reports'
+      path: '/dos/reports'
+      fullPath: '/app/dos/reports'
+      preLoaderRoute: typeof AppDosReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dos/marks': {
+      id: '/app/dos/marks'
+      path: '/dos/marks'
+      fullPath: '/app/dos/marks'
+      preLoaderRoute: typeof AppDosMarksRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dos/classes': {
+      id: '/app/dos/classes'
+      path: '/dos/classes'
+      fullPath: '/app/dos/classes'
+      preLoaderRoute: typeof AppDosClassesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dos/attendance': {
+      id: '/app/dos/attendance'
+      path: '/dos/attendance'
+      fullPath: '/app/dos/attendance'
+      preLoaderRoute: typeof AppDosAttendanceRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dos/analytics': {
+      id: '/app/dos/analytics'
+      path: '/dos/analytics'
+      fullPath: '/app/dos/analytics'
+      preLoaderRoute: typeof AppDosAnalyticsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/director/students': {
+      id: '/app/director/students'
+      path: '/director/students'
+      fullPath: '/app/director/students'
+      preLoaderRoute: typeof AppDirectorStudentsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/director/staff': {
+      id: '/app/director/staff'
+      path: '/director/staff'
+      fullPath: '/app/director/staff'
+      preLoaderRoute: typeof AppDirectorStaffRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/director/settings': {
+      id: '/app/director/settings'
+      path: '/director/settings'
+      fullPath: '/app/director/settings'
+      preLoaderRoute: typeof AppDirectorSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/director/reports': {
+      id: '/app/director/reports'
+      path: '/director/reports'
+      fullPath: '/app/director/reports'
+      preLoaderRoute: typeof AppDirectorReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/director/approvals': {
+      id: '/app/director/approvals'
+      path: '/director/approvals'
+      fullPath: '/app/director/approvals'
+      preLoaderRoute: typeof AppDirectorApprovalsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/director/announcements': {
+      id: '/app/director/announcements'
+      path: '/director/announcements'
+      fullPath: '/app/director/announcements'
+      preLoaderRoute: typeof AppDirectorAnnouncementsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppIndexRoute: typeof AppIndexRoute
+  AppDirectorAnnouncementsRoute: typeof AppDirectorAnnouncementsRoute
+  AppDirectorApprovalsRoute: typeof AppDirectorApprovalsRoute
+  AppDirectorReportsRoute: typeof AppDirectorReportsRoute
+  AppDirectorSettingsRoute: typeof AppDirectorSettingsRoute
+  AppDirectorStaffRoute: typeof AppDirectorStaffRoute
+  AppDirectorStudentsRoute: typeof AppDirectorStudentsRoute
+  AppDosAnalyticsRoute: typeof AppDosAnalyticsRoute
+  AppDosAttendanceRoute: typeof AppDosAttendanceRoute
+  AppDosClassesRoute: typeof AppDosClassesRoute
+  AppDosMarksRoute: typeof AppDosMarksRoute
+  AppDosReportsRoute: typeof AppDosReportsRoute
+  AppDosSubjectsRoute: typeof AppDosSubjectsRoute
+  AppDosTeachersRoute: typeof AppDosTeachersRoute
+  AppStudentAnnouncementsRoute: typeof AppStudentAnnouncementsRoute
+  AppStudentAttendanceRoute: typeof AppStudentAttendanceRoute
+  AppStudentMarksRoute: typeof AppStudentMarksRoute
+  AppStudentReportsRoute: typeof AppStudentReportsRoute
+  AppStudentSubjectsRoute: typeof AppStudentSubjectsRoute
+  AppTeacherAnnouncementsRoute: typeof AppTeacherAnnouncementsRoute
+  AppTeacherAttendanceRoute: typeof AppTeacherAttendanceRoute
+  AppTeacherClassesRoute: typeof AppTeacherClassesRoute
+  AppTeacherMarksRoute: typeof AppTeacherMarksRoute
+  AppTeacherStudentsRoute: typeof AppTeacherStudentsRoute
+  AppDirectorIndexRoute: typeof AppDirectorIndexRoute
+  AppDosIndexRoute: typeof AppDosIndexRoute
+  AppStudentIndexRoute: typeof AppStudentIndexRoute
+  AppTeacherIndexRoute: typeof AppTeacherIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppIndexRoute: AppIndexRoute,
+  AppDirectorAnnouncementsRoute: AppDirectorAnnouncementsRoute,
+  AppDirectorApprovalsRoute: AppDirectorApprovalsRoute,
+  AppDirectorReportsRoute: AppDirectorReportsRoute,
+  AppDirectorSettingsRoute: AppDirectorSettingsRoute,
+  AppDirectorStaffRoute: AppDirectorStaffRoute,
+  AppDirectorStudentsRoute: AppDirectorStudentsRoute,
+  AppDosAnalyticsRoute: AppDosAnalyticsRoute,
+  AppDosAttendanceRoute: AppDosAttendanceRoute,
+  AppDosClassesRoute: AppDosClassesRoute,
+  AppDosMarksRoute: AppDosMarksRoute,
+  AppDosReportsRoute: AppDosReportsRoute,
+  AppDosSubjectsRoute: AppDosSubjectsRoute,
+  AppDosTeachersRoute: AppDosTeachersRoute,
+  AppStudentAnnouncementsRoute: AppStudentAnnouncementsRoute,
+  AppStudentAttendanceRoute: AppStudentAttendanceRoute,
+  AppStudentMarksRoute: AppStudentMarksRoute,
+  AppStudentReportsRoute: AppStudentReportsRoute,
+  AppStudentSubjectsRoute: AppStudentSubjectsRoute,
+  AppTeacherAnnouncementsRoute: AppTeacherAnnouncementsRoute,
+  AppTeacherAttendanceRoute: AppTeacherAttendanceRoute,
+  AppTeacherClassesRoute: AppTeacherClassesRoute,
+  AppTeacherMarksRoute: AppTeacherMarksRoute,
+  AppTeacherStudentsRoute: AppTeacherStudentsRoute,
+  AppDirectorIndexRoute: AppDirectorIndexRoute,
+  AppDosIndexRoute: AppDosIndexRoute,
+  AppStudentIndexRoute: AppStudentIndexRoute,
+  AppTeacherIndexRoute: AppTeacherIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

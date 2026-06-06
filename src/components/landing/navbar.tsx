@@ -53,7 +53,7 @@ export function Navbar() {
             </motion.div>
           </button>
           <a
-            href="#cta"
+            href="/app"
             className="hidden sm:inline-flex h-9 items-center px-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             Sign in
@@ -61,10 +61,10 @@ export function Navbar() {
           <motion.a
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.97 }}
-            href="#cta"
+            href="/app"
             className="inline-flex h-9 items-center gap-1.5 px-4 rounded-lg bg-foreground text-background text-sm font-medium shadow-card hover:shadow-elevated transition-shadow"
           >
-            Start Free
+            Open dashboard
           </motion.a>
         </div>
       </div>
