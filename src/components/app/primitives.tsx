@@ -12,7 +12,7 @@ export function PageHeader({
   title: string;
   description?: string;
   actions?: ReactNode;
-  eyebrow?: string;
+  eyebrow?: ReactNode;
 }) {
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-6">
