@@ -12,7 +12,15 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as AppDosIndexRouteImport } from './routes/app/dos/index'
 import { Route as AppDirectorIndexRouteImport } from './routes/app/director/index'
+import { Route as AppDosTeachersRouteImport } from './routes/app/dos/teachers'
+import { Route as AppDosSubjectsRouteImport } from './routes/app/dos/subjects'
+import { Route as AppDosReportsRouteImport } from './routes/app/dos/reports'
+import { Route as AppDosMarksRouteImport } from './routes/app/dos/marks'
+import { Route as AppDosClassesRouteImport } from './routes/app/dos/classes'
+import { Route as AppDosAttendanceRouteImport } from './routes/app/dos/attendance'
+import { Route as AppDosAnalyticsRouteImport } from './routes/app/dos/analytics'
 import { Route as AppDirectorStudentsRouteImport } from './routes/app/director/students'
 import { Route as AppDirectorStaffRouteImport } from './routes/app/director/staff'
 import { Route as AppDirectorSettingsRouteImport } from './routes/app/director/settings'
@@ -35,9 +43,49 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppDosIndexRoute = AppDosIndexRouteImport.update({
+  id: '/dos/',
+  path: '/dos/',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDirectorIndexRoute = AppDirectorIndexRouteImport.update({
   id: '/director/',
   path: '/director/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDosTeachersRoute = AppDosTeachersRouteImport.update({
+  id: '/dos/teachers',
+  path: '/dos/teachers',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDosSubjectsRoute = AppDosSubjectsRouteImport.update({
+  id: '/dos/subjects',
+  path: '/dos/subjects',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDosReportsRoute = AppDosReportsRouteImport.update({
+  id: '/dos/reports',
+  path: '/dos/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDosMarksRoute = AppDosMarksRouteImport.update({
+  id: '/dos/marks',
+  path: '/dos/marks',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDosClassesRoute = AppDosClassesRouteImport.update({
+  id: '/dos/classes',
+  path: '/dos/classes',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDosAttendanceRoute = AppDosAttendanceRouteImport.update({
+  id: '/dos/attendance',
+  path: '/dos/attendance',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDosAnalyticsRoute = AppDosAnalyticsRouteImport.update({
+  id: '/dos/analytics',
+  path: '/dos/analytics',
   getParentRoute: () => AppRoute,
 } as any)
 const AppDirectorStudentsRoute = AppDirectorStudentsRouteImport.update({
@@ -82,7 +130,15 @@ export interface FileRoutesByFullPath {
   '/app/director/settings': typeof AppDirectorSettingsRoute
   '/app/director/staff': typeof AppDirectorStaffRoute
   '/app/director/students': typeof AppDirectorStudentsRoute
+  '/app/dos/analytics': typeof AppDosAnalyticsRoute
+  '/app/dos/attendance': typeof AppDosAttendanceRoute
+  '/app/dos/classes': typeof AppDosClassesRoute
+  '/app/dos/marks': typeof AppDosMarksRoute
+  '/app/dos/reports': typeof AppDosReportsRoute
+  '/app/dos/subjects': typeof AppDosSubjectsRoute
+  '/app/dos/teachers': typeof AppDosTeachersRoute
   '/app/director/': typeof AppDirectorIndexRoute
+  '/app/dos/': typeof AppDosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -93,7 +149,15 @@ export interface FileRoutesByTo {
   '/app/director/settings': typeof AppDirectorSettingsRoute
   '/app/director/staff': typeof AppDirectorStaffRoute
   '/app/director/students': typeof AppDirectorStudentsRoute
+  '/app/dos/analytics': typeof AppDosAnalyticsRoute
+  '/app/dos/attendance': typeof AppDosAttendanceRoute
+  '/app/dos/classes': typeof AppDosClassesRoute
+  '/app/dos/marks': typeof AppDosMarksRoute
+  '/app/dos/reports': typeof AppDosReportsRoute
+  '/app/dos/subjects': typeof AppDosSubjectsRoute
+  '/app/dos/teachers': typeof AppDosTeachersRoute
   '/app/director': typeof AppDirectorIndexRoute
+  '/app/dos': typeof AppDosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -106,7 +170,15 @@ export interface FileRoutesById {
   '/app/director/settings': typeof AppDirectorSettingsRoute
   '/app/director/staff': typeof AppDirectorStaffRoute
   '/app/director/students': typeof AppDirectorStudentsRoute
+  '/app/dos/analytics': typeof AppDosAnalyticsRoute
+  '/app/dos/attendance': typeof AppDosAttendanceRoute
+  '/app/dos/classes': typeof AppDosClassesRoute
+  '/app/dos/marks': typeof AppDosMarksRoute
+  '/app/dos/reports': typeof AppDosReportsRoute
+  '/app/dos/subjects': typeof AppDosSubjectsRoute
+  '/app/dos/teachers': typeof AppDosTeachersRoute
   '/app/director/': typeof AppDirectorIndexRoute
+  '/app/dos/': typeof AppDosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -120,7 +192,15 @@ export interface FileRouteTypes {
     | '/app/director/settings'
     | '/app/director/staff'
     | '/app/director/students'
+    | '/app/dos/analytics'
+    | '/app/dos/attendance'
+    | '/app/dos/classes'
+    | '/app/dos/marks'
+    | '/app/dos/reports'
+    | '/app/dos/subjects'
+    | '/app/dos/teachers'
     | '/app/director/'
+    | '/app/dos/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -131,7 +211,15 @@ export interface FileRouteTypes {
     | '/app/director/settings'
     | '/app/director/staff'
     | '/app/director/students'
+    | '/app/dos/analytics'
+    | '/app/dos/attendance'
+    | '/app/dos/classes'
+    | '/app/dos/marks'
+    | '/app/dos/reports'
+    | '/app/dos/subjects'
+    | '/app/dos/teachers'
     | '/app/director'
+    | '/app/dos'
   id:
     | '__root__'
     | '/'
@@ -143,7 +231,15 @@ export interface FileRouteTypes {
     | '/app/director/settings'
     | '/app/director/staff'
     | '/app/director/students'
+    | '/app/dos/analytics'
+    | '/app/dos/attendance'
+    | '/app/dos/classes'
+    | '/app/dos/marks'
+    | '/app/dos/reports'
+    | '/app/dos/subjects'
+    | '/app/dos/teachers'
     | '/app/director/'
+    | '/app/dos/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -174,11 +270,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/dos/': {
+      id: '/app/dos/'
+      path: '/dos'
+      fullPath: '/app/dos/'
+      preLoaderRoute: typeof AppDosIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/director/': {
       id: '/app/director/'
       path: '/director'
       fullPath: '/app/director/'
       preLoaderRoute: typeof AppDirectorIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dos/teachers': {
+      id: '/app/dos/teachers'
+      path: '/dos/teachers'
+      fullPath: '/app/dos/teachers'
+      preLoaderRoute: typeof AppDosTeachersRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dos/subjects': {
+      id: '/app/dos/subjects'
+      path: '/dos/subjects'
+      fullPath: '/app/dos/subjects'
+      preLoaderRoute: typeof AppDosSubjectsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dos/reports': {
+      id: '/app/dos/reports'
+      path: '/dos/reports'
+      fullPath: '/app/dos/reports'
+      preLoaderRoute: typeof AppDosReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dos/marks': {
+      id: '/app/dos/marks'
+      path: '/dos/marks'
+      fullPath: '/app/dos/marks'
+      preLoaderRoute: typeof AppDosMarksRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dos/classes': {
+      id: '/app/dos/classes'
+      path: '/dos/classes'
+      fullPath: '/app/dos/classes'
+      preLoaderRoute: typeof AppDosClassesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dos/attendance': {
+      id: '/app/dos/attendance'
+      path: '/dos/attendance'
+      fullPath: '/app/dos/attendance'
+      preLoaderRoute: typeof AppDosAttendanceRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dos/analytics': {
+      id: '/app/dos/analytics'
+      path: '/dos/analytics'
+      fullPath: '/app/dos/analytics'
+      preLoaderRoute: typeof AppDosAnalyticsRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/director/students': {
@@ -234,7 +386,15 @@ interface AppRouteChildren {
   AppDirectorSettingsRoute: typeof AppDirectorSettingsRoute
   AppDirectorStaffRoute: typeof AppDirectorStaffRoute
   AppDirectorStudentsRoute: typeof AppDirectorStudentsRoute
+  AppDosAnalyticsRoute: typeof AppDosAnalyticsRoute
+  AppDosAttendanceRoute: typeof AppDosAttendanceRoute
+  AppDosClassesRoute: typeof AppDosClassesRoute
+  AppDosMarksRoute: typeof AppDosMarksRoute
+  AppDosReportsRoute: typeof AppDosReportsRoute
+  AppDosSubjectsRoute: typeof AppDosSubjectsRoute
+  AppDosTeachersRoute: typeof AppDosTeachersRoute
   AppDirectorIndexRoute: typeof AppDirectorIndexRoute
+  AppDosIndexRoute: typeof AppDosIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -245,7 +405,15 @@ const AppRouteChildren: AppRouteChildren = {
   AppDirectorSettingsRoute: AppDirectorSettingsRoute,
   AppDirectorStaffRoute: AppDirectorStaffRoute,
   AppDirectorStudentsRoute: AppDirectorStudentsRoute,
+  AppDosAnalyticsRoute: AppDosAnalyticsRoute,
+  AppDosAttendanceRoute: AppDosAttendanceRoute,
+  AppDosClassesRoute: AppDosClassesRoute,
+  AppDosMarksRoute: AppDosMarksRoute,
+  AppDosReportsRoute: AppDosReportsRoute,
+  AppDosSubjectsRoute: AppDosSubjectsRoute,
+  AppDosTeachersRoute: AppDosTeachersRoute,
   AppDirectorIndexRoute: AppDirectorIndexRoute,
+  AppDosIndexRoute: AppDosIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
@@ -257,3 +425,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
