@@ -1,4 +1,5 @@
-import { createFileRoute, Navigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { useRole } from "@/components/app/role-context";
 
 export const Route = createFileRoute("/app/")({
@@ -7,5 +8,9 @@ export const Route = createFileRoute("/app/")({
 
 function AppIndex() {
   const { role } = useRole();
-  return <Navigate to={`/app/${role}` as never} />;
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate({ to: `/app/${role}` });
+  }, [role, navigate]);
+  return null;
 }
