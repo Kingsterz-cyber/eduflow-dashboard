@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OnboardingIndexRouteImport } from './routes/onboarding.index'
 import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as OnboardingTeacherRouteImport } from './routes/onboarding.teacher'
+import { Route as OnboardingStudentRouteImport } from './routes/onboarding.student'
+import { Route as OnboardingSchoolRouteImport } from './routes/onboarding.school'
 import { Route as AppTeacherIndexRouteImport } from './routes/app/teacher/index'
 import { Route as AppStudentIndexRouteImport } from './routes/app/student/index'
 import { Route as AppDosIndexRouteImport } from './routes/app/dos/index'
@@ -40,6 +46,16 @@ import { Route as AppDirectorReportsRouteImport } from './routes/app/director/re
 import { Route as AppDirectorApprovalsRouteImport } from './routes/app/director/approvals'
 import { Route as AppDirectorAnnouncementsRouteImport } from './routes/app/director/announcements'
 
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppRoute = AppRouteImport.update({
   id: '/app',
   path: '/app',
@@ -50,10 +66,30 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => OnboardingRoute,
+} as any)
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AppRoute,
+} as any)
+const OnboardingTeacherRoute = OnboardingTeacherRouteImport.update({
+  id: '/teacher',
+  path: '/teacher',
+  getParentRoute: () => OnboardingRoute,
+} as any)
+const OnboardingStudentRoute = OnboardingStudentRouteImport.update({
+  id: '/student',
+  path: '/student',
+  getParentRoute: () => OnboardingRoute,
+} as any)
+const OnboardingSchoolRoute = OnboardingSchoolRouteImport.update({
+  id: '/school',
+  path: '/school',
+  getParentRoute: () => OnboardingRoute,
 } as any)
 const AppTeacherIndexRoute = AppTeacherIndexRouteImport.update({
   id: '/teacher/',
@@ -195,7 +231,13 @@ const AppDirectorAnnouncementsRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/onboarding': typeof OnboardingRouteWithChildren
+  '/onboarding/school': typeof OnboardingSchoolRoute
+  '/onboarding/student': typeof OnboardingStudentRoute
+  '/onboarding/teacher': typeof OnboardingTeacherRoute
   '/app/': typeof AppIndexRoute
+  '/onboarding/': typeof OnboardingIndexRoute
   '/app/director/announcements': typeof AppDirectorAnnouncementsRoute
   '/app/director/approvals': typeof AppDirectorApprovalsRoute
   '/app/director/reports': typeof AppDirectorReportsRoute
@@ -226,7 +268,12 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/onboarding/school': typeof OnboardingSchoolRoute
+  '/onboarding/student': typeof OnboardingStudentRoute
+  '/onboarding/teacher': typeof OnboardingTeacherRoute
   '/app': typeof AppIndexRoute
+  '/onboarding': typeof OnboardingIndexRoute
   '/app/director/announcements': typeof AppDirectorAnnouncementsRoute
   '/app/director/approvals': typeof AppDirectorApprovalsRoute
   '/app/director/reports': typeof AppDirectorReportsRoute
@@ -259,7 +306,13 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/onboarding': typeof OnboardingRouteWithChildren
+  '/onboarding/school': typeof OnboardingSchoolRoute
+  '/onboarding/student': typeof OnboardingStudentRoute
+  '/onboarding/teacher': typeof OnboardingTeacherRoute
   '/app/': typeof AppIndexRoute
+  '/onboarding/': typeof OnboardingIndexRoute
   '/app/director/announcements': typeof AppDirectorAnnouncementsRoute
   '/app/director/approvals': typeof AppDirectorApprovalsRoute
   '/app/director/reports': typeof AppDirectorReportsRoute
@@ -293,7 +346,13 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/app'
+    | '/auth'
+    | '/onboarding'
+    | '/onboarding/school'
+    | '/onboarding/student'
+    | '/onboarding/teacher'
     | '/app/'
+    | '/onboarding/'
     | '/app/director/announcements'
     | '/app/director/approvals'
     | '/app/director/reports'
@@ -324,7 +383,12 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
+    | '/onboarding/school'
+    | '/onboarding/student'
+    | '/onboarding/teacher'
     | '/app'
+    | '/onboarding'
     | '/app/director/announcements'
     | '/app/director/approvals'
     | '/app/director/reports'
@@ -356,7 +420,13 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/app'
+    | '/auth'
+    | '/onboarding'
+    | '/onboarding/school'
+    | '/onboarding/student'
+    | '/onboarding/teacher'
     | '/app/'
+    | '/onboarding/'
     | '/app/director/announcements'
     | '/app/director/approvals'
     | '/app/director/reports'
@@ -389,10 +459,26 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  OnboardingRoute: typeof OnboardingRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/app': {
       id: '/app'
       path: '/app'
@@ -407,12 +493,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/onboarding/': {
+      id: '/onboarding/'
+      path: '/'
+      fullPath: '/onboarding/'
+      preLoaderRoute: typeof OnboardingIndexRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
     '/app/': {
       id: '/app/'
       path: '/'
       fullPath: '/app/'
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
+    }
+    '/onboarding/teacher': {
+      id: '/onboarding/teacher'
+      path: '/teacher'
+      fullPath: '/onboarding/teacher'
+      preLoaderRoute: typeof OnboardingTeacherRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
+    '/onboarding/student': {
+      id: '/onboarding/student'
+      path: '/student'
+      fullPath: '/onboarding/student'
+      preLoaderRoute: typeof OnboardingStudentRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
+    '/onboarding/school': {
+      id: '/onboarding/school'
+      path: '/school'
+      fullPath: '/onboarding/school'
+      preLoaderRoute: typeof OnboardingSchoolRouteImport
+      parentRoute: typeof OnboardingRoute
     }
     '/app/teacher/': {
       id: '/app/teacher/'
@@ -670,20 +784,30 @@ const AppRouteChildren: AppRouteChildren = {
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
+interface OnboardingRouteChildren {
+  OnboardingSchoolRoute: typeof OnboardingSchoolRoute
+  OnboardingStudentRoute: typeof OnboardingStudentRoute
+  OnboardingTeacherRoute: typeof OnboardingTeacherRoute
+  OnboardingIndexRoute: typeof OnboardingIndexRoute
+}
+
+const OnboardingRouteChildren: OnboardingRouteChildren = {
+  OnboardingSchoolRoute: OnboardingSchoolRoute,
+  OnboardingStudentRoute: OnboardingStudentRoute,
+  OnboardingTeacherRoute: OnboardingTeacherRoute,
+  OnboardingIndexRoute: OnboardingIndexRoute,
+}
+
+const OnboardingRouteWithChildren = OnboardingRoute._addFileChildren(
+  OnboardingRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
+  AuthRoute: AuthRoute,
+  OnboardingRoute: OnboardingRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
