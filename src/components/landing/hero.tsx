@@ -63,7 +63,7 @@ export function Hero() {
             variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.97 }}
-            href="/app"
+            href="/auth"
             className="group inline-flex h-11 items-center gap-2 px-5 rounded-xl bg-gradient-hero text-white font-medium text-sm shadow-glow-primary transition-shadow hover:shadow-elevated"
           >
             Open dashboard
