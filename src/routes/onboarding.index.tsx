@@ -5,7 +5,7 @@ import { Building2, GraduationCap, UserCog, ArrowRight, Sparkles, LogOut } from 
 import { supabase } from "@/integrations/supabase/client";
 import { useMe } from "@/hooks/use-me";
 
-export const Route = createFileRoute("/onboarding")({
+export const Route = createFileRoute("/onboarding/")({
   head: () => ({ meta: [{ title: "Get started · EduFlow" }] }),
   component: OnboardingHome,
 });
