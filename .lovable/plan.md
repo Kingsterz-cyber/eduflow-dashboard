@@ -1,125 +1,68 @@
+# EduFlow → Production SaaS (Multi-Phase Plan)
 
-# EduFlow — Real Multi-School SaaS Build Plan
+This is a very large scope — building it correctly requires multiple iterations. I'll keep the existing premium UI, theme, animations, and navigation untouched and replace mock data + wire real workflows behind every screen.
 
-The current app is a UI prototype using deterministic mock data. This plan replaces it with a real, multi-tenant backend on **Lovable Cloud** (Postgres + Auth + RLS), real auth flows, and end-to-end workflows behind every screen.
+Phase 1 is already done (auth, schools, onboarding skeleton, RLS, base schema). This plan covers everything still needed.
 
-This is a large build. I'll execute it in 4 sequenced phases so you can review meaningful milestones. Each phase ends with a working, testable surface.
+## Phase 2 — Schema completion + Director workflows
 
----
+**Schema additions / fixes (single migration):**
+- `students`: add personal/contact/guardian/address columns (first/middle/last name, gender, dob, nationality, photo_url, phone, email, country, province, district, sector, cell, village, address, father_name, mother_name, guardian_name, guardian_phone, guardian_email, guardian_occupation, enrollment_code_used).
+- `enrollment_codes`: status (unused/used/pending), used_by, class_id, generated_by (class teacher), batch_id.
+- `teacher_assignments`: ensure `(teacher_id, subject_id, class_id)` + `is_class_teacher` + `class_teacher_of` (class_id when class teacher).
+- `assessments`: type (cat/quiz/practical/exam/assignment/custom), term_id, weight, total_marks, name.
+- `marks`: (student_id, assessment_id, teacher_id, score) — keep teacher link.
+- `attendance`: (student_id, class_id, date, status present/absent/late, recorded_by).
+- `announcements`: audience (school/class/role), class_id nullable.
+- `notifications`: per-user inbox.
+- `audit_log`: actor, action, entity, entity_id, school_id, diff.
+- `report_cards`: cached snapshots (student_id, term_id, totals/avg/grade/position, pdf_url nullable).
+- All new tables: GRANTs + RLS scoped by `current_school_id()` + `has_role()`.
 
-## Phase 1 — Foundation: Cloud, Auth, Multi-Tenancy
+**Director server functions (`src/lib/director.functions.ts`):**
+- CRUD: divisions/levels/classes, departments, subjects, teacher approvals, student approvals, announcements, school settings (logo, category, country, contact, regenerate codes).
+- KPIs: total students/teachers/classes, pending approvals, growth, attendance summary, performance summary — all SQL aggregates.
 
-### Enable Lovable Cloud
-Provisions Postgres + Auth. All data isolated per `school_id`.
+**Director pages rewired:** dashboard, staff, students, approvals, announcements, settings, reports — all using real data + TanStack Query + real-time channels.
 
-### Database (migrations)
+## Phase 3 — DOS academic command center
 
-**Tenancy & identity**
-- `schools` — name, logo_url, country, type, school_code (unique), teacher_reg_code, student_reg_code, contact info, created_by
-- `profiles` — id (=auth.uid), school_id, full_name, email, phone, avatar_url, status (`pending`|`active`|`rejected`)
-- `app_role` enum: `director`, `dos`, `teacher`, `student`
-- `user_roles` — user_id, school_id, role (separate table — security best practice)
+**DOS server functions (`src/lib/dos.functions.ts`):**
+- Attendance rate, pass rate, class rankings, subject rankings, students at risk (attendance <78% OR avg <55%), teacher activity (last 30d marks/attendance submissions), grade distribution, weekly performance trend, attendance heatmap (52 weeks of school-wide attendance %).
+- Read-only views into classes/subjects/teachers/marks/attendance across the school.
 
-**Academic structure (fully dynamic, no hardcoded O/A-Level)**
-- `divisions` — school_id, name, order ("Primary", "Secondary", "Advanced", custom…)
-- `levels` — division_id, name, order ("P1"…"S6"…custom)
-- `classes` — level_id, name ("S2A"), class_teacher_id (nullable)
-- `departments` — school_id, name
-- `subjects` — school_id, department_id, name
+**DOS pages:** dashboard, analytics, classes, subjects, attendance, marks, reports, teachers — all real data.
 
-**Teaching assignments**
-- `teacher_subjects` — teacher_id, subject_id
-- `teacher_classes` — teacher_id, class_id, subject_id (which subject they teach to which class)
-- `students` — profile_id, class_id, enrollment_code (unique per school), guardian info
-- `enrollment_codes` — class_id, code (`S2A-001`), status (`unused`|`used`), used_by
+## Phase 4 — Teacher + Class Teacher workspaces
 
-**Academic data**
-- `terms` — school_id, name, start_date, end_date, is_current
-- `assessments` — class_id, subject_id, teacher_id, term_id, name, type (`CAT`|`Quiz`|`Exam`|`Assignment`), total_marks, date
-- `marks` — assessment_id, student_id, score
-- `attendance` — class_id, student_id, date, status (`present`|`absent`|`late`|`excused`), recorded_by
-- `grading_bands` — school_id, grade, min, max, label
-- `announcements` — school_id, author_id, title, body, audience (role/class), published_at
-- `approvals_log`, `activity_log` for audit
+**Teacher server functions (`src/lib/teacher.functions.ts`):**
+- List "my teaching cards" = distinct `(subject, class)` from `teacher_assignments`.
+- Class workspace per `(subject, class)`: roster (alphabetical), attendance grid upsert, assessment CRUD, marks entry grid (auto totals/averages/grades from `grading_bands`), reports, analytics.
+- Class teacher–only: enrollment code generation (batch), code status table, class roster overview, report card generation, class analytics.
 
-### RLS (every table)
-- `has_role(uid, school_id, role)` SECURITY DEFINER function (avoids recursion)
-- `current_school_id()` helper from JWT/profile
-- Policies scoped by `school_id`. Examples:
-  - Students: SELECT own marks/attendance only
-  - Teachers: SELECT/INSERT marks for `(class, subject)` they teach
-  - Class teachers: extra read access across all subjects for their class
-  - DOS: read everything academic in their school
-  - Director: full school-scoped read + approvals + settings
+**Sidebar:** conditionally render "My Class" section when `is_class_teacher`.
 
-### Auth flows (real, replacing demo role switcher)
-- `/auth` — Email + password sign in / sign up (default + Google sign-in via Lovable broker)
-- `/onboarding/school` — Director: creates school (returns codes)
-- `/onboarding/teacher` — School code → teacher reg code → form → department/subjects/classes → class-teacher toggle → pending
-- `/onboarding/student` — School code → student reg code → enrollment code (auto-resolves class) → pending
-- `_authenticated` layout (integration-managed) gates `/app/*`
-- Role detected from `user_roles`, not localStorage. Role switcher removed (kept only as dev-only override behind a flag).
+## Phase 5 — Student dashboard + Onboarding completion
 
----
+- Wire onboarding student form with full personal/guardian/address fields; enrollment code resolves to class automatically (no manual class pick).
+- Student pages: dashboard (own KPIs), subjects, attendance, marks, reports, announcements — strictly own data, RLS-enforced.
 
-## Phase 2 — Director + School Setup
+## Phase 6 — Reports, real-time, polish
 
-- **School Settings**: branding, codes (rotate), academic year/terms, grading bands
-- **Academic Structure builder**: tree UI to create Divisions → Levels → Classes (drag/reorder, rename, delete with confirmation)
-- **Departments & Subjects** manager
-- **Approvals**: real pending teachers + students list, approve/reject → flips `profiles.status` and writes audit row
-- **Staff**: real teachers list from DB, filters, assign/unassign class-teacher role, deactivate
-- **Students**: class tree from real classes; per-class roster
-- **Announcements**: composer with audience targeting (roles, specific classes), reads counter
-- **Reports**: queue + generated PDF list (server-fn generates report data; PDF rendering stub returns JSON spec for now)
-- **Dashboard KPIs**: real counts via server functions
+- PDF report cards: server route `/api/public/reports/student/$id.pdf` (signed token) using `@react-pdf/renderer` on the server — pulls marks/attendance/comments/rank.
+- Realtime: subscribe key dashboards to `marks`, `attendance`, `announcements`, `approvals`, `notifications` → query invalidation.
+- Notifications center (bell in topbar): approvals, new marks, announcements, report generated.
+- Audit log writes on all mutations.
+- Remove `src/lib/eduflow-data.ts` entirely.
+- Empty / loading / error states everywhere.
+- Fix routing so Director / DOS / Teacher / Student marks/attendance pages are fully isolated (no shared mock components).
+
+## Out of scope (for now)
+
+- SMS/email delivery, parent portal, billing, file uploads beyond logo & student photo, student transfer/promotion engine (will follow as Phase 7 if you want).
 
 ---
 
-## Phase 3 — Teacher + Class Teacher
+**Execution model:** I'll ship one phase per turn, each ending with the dashboards/pages in that phase fully functional and demoable. Phase 2 is the next turn.
 
-- **My Teaching Classes**: real list from `teacher_classes`
-- **Class Workspace** (per class): Overview, Students, Attendance, Assessments, Marks, Analytics, Reports
-- **Attendance**: roster pulled from `students`, present/absent/late toggles, upsert into `attendance`, history view, % per student
-- **Assessments**: create CAT/Quiz/Exam with total marks; list with status
-- **Marks entry**: spreadsheet-style grid keyed by `(assessment, student)`, autosave, auto totals/averages/grades from `grading_bands`
-- **Class Teacher–only tabs** (gated by `classes.class_teacher_id = auth.uid()`):
-  - **Enrollment Codes**: generate batch (`S2A-001…NNN`), copy, status (unused/used/registered), revoke
-  - **Reports**: generate per-student report card that aggregates marks across all subject teachers for the class + attendance + rank + comments box
-- **Announcements** scoped to teacher's classes
-
----
-
-## Phase 4 — DOS + Student + Real-time
-
-- **DOS**: academic analytics powered by SQL aggregations (avg by class/subject, pass rate, at-risk students = avg < threshold OR attendance < threshold), attendance heatmap from real `attendance`, teacher activity from recent marks/attendance inserts
-- **Student**: own attendance %, own marks per subject, own rank within class (window function), own report cards, announcements feed
-- **Real-time**: Supabase Realtime channels on `marks`, `attendance`, `announcements`, `approvals` → dashboards refresh live
-- **Notifications**: in-app bell driven by `notifications` table + realtime
-- Empty / loading / error states everywhere
-- Remove all mock data from `src/lib/eduflow-data.ts` (kept as types only or deleted)
-
----
-
-## Technical notes
-
-- **Server functions** (`createServerFn` + `requireSupabaseAuth`) for all mutations and aggregated reads. Reports use admin client server-side for cross-user aggregation within a school.
-- **TanStack Query + Suspense** for all reads; loaders prime cache.
-- **Realtime** via browser supabase client subscriptions inside components.
-- **Validation** with Zod on every server fn input.
-- **No Edge Functions** — all logic in TanStack server fns / routes.
-- Existing landing page untouched.
-
-## Out of scope (will confirm if you want them in)
-
-- Real PDF rendering (will return structured JSON; PDF can be added later)
-- SMS/email notifications
-- Parent portal
-- Billing / subscriptions
-- File uploads beyond school logo
-
-## Deliverable cadence
-
-I'll ship Phase 1 first (Cloud + schema + RLS + auth + onboarding), then Phase 2, 3, 4. After each phase you can test end-to-end and request changes before the next.
-
-**Reply "go" to start Phase 1.** Or tell me to combine/reorder phases, drop scope, or add anything (PDFs, parents, billing, etc.).
+Reply **"go phase 2"** to start, or tell me which phase to prioritize (e.g. "start with teacher workspace") and I'll reorder.
