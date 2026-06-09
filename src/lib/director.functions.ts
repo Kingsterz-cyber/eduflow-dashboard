@@ -2,10 +2,11 @@ import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { z } from "zod";
 
-async function getSchoolId(supabase: ReturnType<typeof requireSupabaseAuth> extends never ? never : any, userId: string): Promise<string> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function getSchoolId(supabase: any, userId: string): Promise<string> {
   const { data } = await supabase.from("profiles").select("school_id").eq("id", userId).maybeSingle();
   if (!data?.school_id) throw new Error("No school context");
-  return data.school_id;
+  return data.school_id as string;
 }
 
 // ----------- KPIs -----------
