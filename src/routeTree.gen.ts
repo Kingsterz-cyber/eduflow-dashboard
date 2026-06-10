@@ -42,6 +42,7 @@ import { Route as AppDosAnalyticsRouteImport } from './routes/app/dos/analytics'
 import { Route as AppDirectorStudentsRouteImport } from './routes/app/director/students'
 import { Route as AppDirectorStaffRouteImport } from './routes/app/director/staff'
 import { Route as AppDirectorSettingsRouteImport } from './routes/app/director/settings'
+import { Route as AppDirectorSchoolSetupRouteImport } from './routes/app/director/school-setup'
 import { Route as AppDirectorReportsRouteImport } from './routes/app/director/reports'
 import { Route as AppDirectorApprovalsRouteImport } from './routes/app/director/approvals'
 import { Route as AppDirectorAnnouncementsRouteImport } from './routes/app/director/announcements'
@@ -211,6 +212,11 @@ const AppDirectorSettingsRoute = AppDirectorSettingsRouteImport.update({
   path: '/director/settings',
   getParentRoute: () => AppRoute,
 } as any)
+const AppDirectorSchoolSetupRoute = AppDirectorSchoolSetupRouteImport.update({
+  id: '/director/school-setup',
+  path: '/director/school-setup',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDirectorReportsRoute = AppDirectorReportsRouteImport.update({
   id: '/director/reports',
   path: '/director/reports',
@@ -241,6 +247,7 @@ export interface FileRoutesByFullPath {
   '/app/director/announcements': typeof AppDirectorAnnouncementsRoute
   '/app/director/approvals': typeof AppDirectorApprovalsRoute
   '/app/director/reports': typeof AppDirectorReportsRoute
+  '/app/director/school-setup': typeof AppDirectorSchoolSetupRoute
   '/app/director/settings': typeof AppDirectorSettingsRoute
   '/app/director/staff': typeof AppDirectorStaffRoute
   '/app/director/students': typeof AppDirectorStudentsRoute
@@ -277,6 +284,7 @@ export interface FileRoutesByTo {
   '/app/director/announcements': typeof AppDirectorAnnouncementsRoute
   '/app/director/approvals': typeof AppDirectorApprovalsRoute
   '/app/director/reports': typeof AppDirectorReportsRoute
+  '/app/director/school-setup': typeof AppDirectorSchoolSetupRoute
   '/app/director/settings': typeof AppDirectorSettingsRoute
   '/app/director/staff': typeof AppDirectorStaffRoute
   '/app/director/students': typeof AppDirectorStudentsRoute
@@ -316,6 +324,7 @@ export interface FileRoutesById {
   '/app/director/announcements': typeof AppDirectorAnnouncementsRoute
   '/app/director/approvals': typeof AppDirectorApprovalsRoute
   '/app/director/reports': typeof AppDirectorReportsRoute
+  '/app/director/school-setup': typeof AppDirectorSchoolSetupRoute
   '/app/director/settings': typeof AppDirectorSettingsRoute
   '/app/director/staff': typeof AppDirectorStaffRoute
   '/app/director/students': typeof AppDirectorStudentsRoute
@@ -356,6 +365,7 @@ export interface FileRouteTypes {
     | '/app/director/announcements'
     | '/app/director/approvals'
     | '/app/director/reports'
+    | '/app/director/school-setup'
     | '/app/director/settings'
     | '/app/director/staff'
     | '/app/director/students'
@@ -392,6 +402,7 @@ export interface FileRouteTypes {
     | '/app/director/announcements'
     | '/app/director/approvals'
     | '/app/director/reports'
+    | '/app/director/school-setup'
     | '/app/director/settings'
     | '/app/director/staff'
     | '/app/director/students'
@@ -430,6 +441,7 @@ export interface FileRouteTypes {
     | '/app/director/announcements'
     | '/app/director/approvals'
     | '/app/director/reports'
+    | '/app/director/school-setup'
     | '/app/director/settings'
     | '/app/director/staff'
     | '/app/director/students'
@@ -696,6 +708,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDirectorSettingsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/director/school-setup': {
+      id: '/app/director/school-setup'
+      path: '/director/school-setup'
+      fullPath: '/app/director/school-setup'
+      preLoaderRoute: typeof AppDirectorSchoolSetupRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/director/reports': {
       id: '/app/director/reports'
       path: '/director/reports'
@@ -725,6 +744,7 @@ interface AppRouteChildren {
   AppDirectorAnnouncementsRoute: typeof AppDirectorAnnouncementsRoute
   AppDirectorApprovalsRoute: typeof AppDirectorApprovalsRoute
   AppDirectorReportsRoute: typeof AppDirectorReportsRoute
+  AppDirectorSchoolSetupRoute: typeof AppDirectorSchoolSetupRoute
   AppDirectorSettingsRoute: typeof AppDirectorSettingsRoute
   AppDirectorStaffRoute: typeof AppDirectorStaffRoute
   AppDirectorStudentsRoute: typeof AppDirectorStudentsRoute
@@ -756,6 +776,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppDirectorAnnouncementsRoute: AppDirectorAnnouncementsRoute,
   AppDirectorApprovalsRoute: AppDirectorApprovalsRoute,
   AppDirectorReportsRoute: AppDirectorReportsRoute,
+  AppDirectorSchoolSetupRoute: AppDirectorSchoolSetupRoute,
   AppDirectorSettingsRoute: AppDirectorSettingsRoute,
   AppDirectorStaffRoute: AppDirectorStaffRoute,
   AppDirectorStudentsRoute: AppDirectorStudentsRoute,
