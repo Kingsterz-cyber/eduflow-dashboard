@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import {
   Activity, BarChart3, BookOpen, Calendar, ClipboardCheck, FileText,
   GraduationCap, Home, Layers, Megaphone, Settings, ShieldCheck, Sparkles,
-  Users, UserCheck, Award, LineChart, TrendingUp, FolderOpen,
+  Users, UserCheck, Award, LineChart, TrendingUp, FolderOpen, Building2,
 } from "lucide-react";
 import { useRole } from "./role-context";
 import type { Role } from "@/lib/eduflow-data";
@@ -14,6 +14,7 @@ type NavItem = { to: string; label: string; icon: LucideIcon };
 const NAV: Record<Role, NavItem[]> = {
   director: [
     { to: "/app/director", label: "Dashboard", icon: Home },
+    { to: "/app/director/school-setup", label: "School Setup", icon: Building2 },
     { to: "/app/director/staff", label: "Staff", icon: Users },
     { to: "/app/director/students", label: "Students", icon: GraduationCap },
     { to: "/app/director/approvals", label: "Approvals", icon: UserCheck },
