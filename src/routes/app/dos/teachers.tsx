@@ -26,7 +26,7 @@ function TeacherPerformancePage() {
               <tr><td colSpan={6} className="px-4 py-10 text-center text-sm text-muted-foreground">No teachers yet.</td></tr>
             )}
             {rows.map((t, i) => {
-              const initials = t.name.split(" ").map((p) => p[0]).slice(0, 2).join("").toUpperCase();
+              const initials = t.name.split(" ").map((p: string) => p[0]).slice(0, 2).join("").toUpperCase();
               return (
                 <tr key={t.id} className="border-b border-border last:border-0 hover:bg-secondary/40">
                   <td className="px-4 py-3">

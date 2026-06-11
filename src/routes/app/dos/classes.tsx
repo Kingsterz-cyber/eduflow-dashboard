@@ -115,7 +115,7 @@ function ClassesPage() {
                       <tr><td colSpan={4} className="px-4 py-8 text-center text-sm text-muted-foreground">No students.</td></tr>
                     )}
                     {filteredStudents.map((s) => {
-                      const initials = s.name.split(" ").map((p) => p[0]).slice(0, 2).join("").toUpperCase();
+                      const initials = s.name.split(" ").map((p: string) => p[0]).slice(0, 2).join("").toUpperCase();
                       return (
                         <tr key={s.id} className="border-b border-border last:border-0 hover:bg-secondary/40">
                           <td className="px-4 py-3"><div className="flex items-center gap-2.5"><Avatar initials={initials} color="indigo" size="sm" /><span className="font-medium">{s.name}</span></div></td>
